@@ -28,14 +28,10 @@ class AsteroidListRepository {
          }
      }*/
 
-    private val initModel = MutableLiveData<PictureOfDay>()
-    val imageOfTheDay: LiveData<PictureOfDay> get() = initModel
-
-
-    suspend fun imageOfTheDay() {
+    suspend fun imageOfTheDay() =
         withContext(Dispatchers.IO) {
             Network.service.getImageOfTheDayAsync(BuildConfig.API_KEY)
            // initModel.value = model.asDomainModel()
         }
-    }
+
 }

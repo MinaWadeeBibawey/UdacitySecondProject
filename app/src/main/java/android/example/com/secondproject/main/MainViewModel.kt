@@ -1,6 +1,7 @@
 package android.example.com.secondproject.main
 
 import android.app.Application
+import android.example.com.secondproject.PictureOfDay
 import android.example.com.secondproject.repositories.AsteroidListRepository
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
@@ -16,7 +17,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val status: LiveData<ApiStatus>
         get() = _status
 
-    val model = asteroidListRepo.imageOfTheDay
+    private val initModel = MutableLiveData<PictureOfDay>()
+    val imageOfTheDay: LiveData<PictureOfDay> get() = initModel
 
     init {
         /*viewModelScope.launch {
@@ -27,10 +29,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    private fun imageOfTheDay() {
-        viewModelScope.launch {
-            asteroidListRepo.imageOfTheDay()
-        }
+    private fun imageOfTheDay() = viewModelScope.launch {
+        initModel.value = asteroidListRepo.imageOfTheDay()
     }
 
 

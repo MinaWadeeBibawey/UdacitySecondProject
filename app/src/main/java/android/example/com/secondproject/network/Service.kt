@@ -1,6 +1,7 @@
 package android.example.com.secondproject.network
 
 import android.example.com.secondproject.Constants
+import android.example.com.secondproject.PictureOfDay
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -12,15 +13,8 @@ import retrofit2.http.Query
 enum class AsteroidLisFilter(val value: String) { TODAY(""), NEXT_SEVEN_DAYS(""), SHOW_ALL("") }
 
 interface AsteroidListService {
-    @GET("devbytes.json")
-    fun getAsteroidList(
-        @Query("start_date") startDate: String = "",
-        @Query("end_date") EndDate: String = "",
-        @Query("api_key") API_KEY: String
-    ): String
-
     @GET("planetary/apod")
-    suspend fun getImageOfTheDayAsync(@Query("api_key") API_KEY: String): ImageOfTheDay
+    suspend fun getImageOfTheDayAsync(@Query("api_key") API_KEY: String): PictureOfDay
 }
 
 private val moshi = Moshi.Builder()

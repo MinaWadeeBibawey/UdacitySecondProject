@@ -25,7 +25,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.model.observe(viewLifecycleOwner) {
+        viewModel.imageOfTheDay.observe(viewLifecycleOwner) {
             if (it.mediaType == "image") {
                 Picasso.with(requireContext()).load(it.url).into(binding.activityMainImageOfTheDay)
                 binding.activityMainImageOfTheDay.contentDescription = it.title
