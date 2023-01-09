@@ -23,7 +23,7 @@ interface AsteroidListService {
     ): String
 
     @GET("planetary/apod")
-   suspend fun getImageOfTheDayAsync(@Query("api_key") API_KEY: String): Deferred<ImageOfTheDay>
+    fun getImageOfTheDayAsync(@Query("api_key") API_KEY: String): ImageOfTheDay
 }
 
 private val moshi = Moshi.Builder()
@@ -34,7 +34,7 @@ object Network {
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .addConverterFactory(ScalarsConverterFactory.create())
         .baseUrl(Constants.BASE_URL)
         .build()
 

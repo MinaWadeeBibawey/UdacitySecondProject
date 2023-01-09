@@ -17,7 +17,7 @@ class MainFragment : Fragment() {
 
         }
         val application = activity.application
-        val viewModelFactory = MainViewModelFactory(application)
+        val viewModelFactory = MainViewModel.MainViewModelFactory(application)
         ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
     }
@@ -26,7 +26,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.model.observe(viewLifecycleOwner) {
-            if (it.media_type == "image") {
+            if (it.mediaType == "image") {
                 Picasso.with(requireContext()).load(it.url).into(binding.activityMainImageOfTheDay)
                 binding.activityMainImageOfTheDay.contentDescription = it.title
             }

@@ -1,7 +1,7 @@
 package android.example.com.secondproject.repositories
 
 import android.example.com.secondproject.BuildConfig
-import android.example.com.secondproject.models.ImageOfTheDayModel
+import android.example.com.secondproject.PictureOfDay
 import android.example.com.secondproject.network.Network
 import android.example.com.secondproject.network.asDomainModel
 import androidx.lifecycle.LiveData
@@ -28,14 +28,14 @@ class AsteroidListRepository {
          }
      }*/
 
-    private val initModel = MutableLiveData<ImageOfTheDayModel>()
-    val imageOfTheDay: LiveData<ImageOfTheDayModel> get() = initModel
+    private val initModel = MutableLiveData<PictureOfDay>()
+    val imageOfTheDay: LiveData<PictureOfDay> get() = initModel
 
 
     suspend fun imageOfTheDay() {
         withContext(Dispatchers.IO) {
-            val model = Network.service.getImageOfTheDayAsync(BuildConfig.API_KEY).await()
-            initModel.value = model.asDomainModel()
+            Network.service.getImageOfTheDayAsync(BuildConfig.API_KEY)
+           // initModel.value = model.asDomainModel()
         }
     }
 }

@@ -1,4 +1,4 @@
-package android.example.com.secondproject
+package android.example.com.secondproject.models
 
 import android.os.Parcelable
 import androidx.room.Entity

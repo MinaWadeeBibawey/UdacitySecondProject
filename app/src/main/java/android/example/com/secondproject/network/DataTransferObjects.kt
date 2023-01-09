@@ -17,6 +17,7 @@
 
 package android.example.com.secondproject.network
 
+import android.example.com.secondproject.PictureOfDay
 import android.example.com.secondproject.models.ImageOfTheDayModel
 import com.squareup.moshi.JsonClass
 
@@ -33,9 +34,9 @@ data class ImageOfTheDay(
     val title: String
 )
 
-fun ImageOfTheDay.asDomainModel(): ImageOfTheDayModel {
-    return ImageOfTheDayModel(
-        media_type = media_type,
+fun ImageOfTheDay.asDomainModel(): PictureOfDay {
+    return PictureOfDay(
+        mediaType = media_type,
         url = url,
         title = title
     )

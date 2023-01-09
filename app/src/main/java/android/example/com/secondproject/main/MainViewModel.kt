@@ -2,10 +2,7 @@ package android.example.com.secondproject.main
 
 import android.app.Application
 import android.example.com.secondproject.repositories.AsteroidListRepository
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
 enum class ApiStatus { LOADING, ERROR, DONE }
@@ -33,6 +30,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private fun imageOfTheDay() {
         viewModelScope.launch {
             asteroidListRepo.imageOfTheDay()
+        }
+    }
+
+
+    class MainViewModelFactory(val app: Application) : ViewModelProvider.Factory {
+        @Suppress("unchecked_cast")
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+                return MainViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
         }
     }
 }

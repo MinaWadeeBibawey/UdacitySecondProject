@@ -1,6 +1,6 @@
 package android.example.com.secondproject.api
 
-import android.example.com.secondproject.Asteroid
+import android.example.com.secondproject.models.Asteroid
 import android.example.com.secondproject.Constants
 import org.json.JSONObject
 import java.text.SimpleDateFormat

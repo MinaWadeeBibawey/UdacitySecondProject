@@ -22,7 +22,7 @@
 
         <argument
             android:name="selectedAsteroid"
-            app:argType="android.example.com.secondproject.Asteroid"/>
+            app:argType="android.example.com.secondproject.models.Asteroid"/>
     </fragment>
 
 </navigation>
