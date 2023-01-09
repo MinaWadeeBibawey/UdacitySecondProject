@@ -6,19 +6,42 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.squareup.picasso.Picasso
 
 class MainFragment : Fragment() {
 
+    lateinit var binding: FragmentMainBinding
+
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
+        val activity = requireNotNull(this.activity) {
+
+        }
+        val application = activity.application
+        val viewModelFactory = MainViewModelFactory(application)
+        ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val binding = FragmentMainBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        viewModel.model.observe(viewLifecycleOwner) {
+            if (it.media_type == "image") {
+                Picasso.with(requireContext()).load(it.url).into(binding.activityMainImageOfTheDay)
+                binding.activityMainImageOfTheDay.contentDescription = it.title
+            }
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentMainBinding.inflate(inflater)
+
+        binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
 
         setHasOptionsMenu(true)
 
@@ -33,4 +56,5 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return true
     }
+
 }
