@@ -2,6 +2,7 @@ package android.example.com.secondproject.network
 
 import android.example.com.secondproject.Constants
 import android.example.com.secondproject.PictureOfDay
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -26,6 +27,7 @@ object Network {
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addConverterFactory(ScalarsConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .baseUrl(Constants.BASE_URL)
         .build()
 
