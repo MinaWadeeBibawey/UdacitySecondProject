@@ -25,8 +25,8 @@ private val moshi = Moshi.Builder()
 object Network {
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .baseUrl(Constants.BASE_URL)
         .build()
