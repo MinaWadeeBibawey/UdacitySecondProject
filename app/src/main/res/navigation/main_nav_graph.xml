@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="android.example.com.secondproject.main.MainFragment"
+        android:name="android.udacity.com.udacitysecondproject.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -16,13 +16,13 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="android.example.com.secondproject.detail.DetailFragment"
+        android:name="android.udacity.com.udacitysecondproject.ui.details.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
 
         <argument
             android:name="selectedAsteroid"
-            app:argType="android.example.com.secondproject.models.Asteroid"/>
+            app:argType="android.udacity.com.udacitysecondproject.models.Asteroid"/>
     </fragment>
 
 </navigation>

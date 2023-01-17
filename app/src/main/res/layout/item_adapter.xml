@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="asteroidModel"
+            type="android.udacity.com.udacitysecondproject.models.Asteroid" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/asteroidName_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/absolute_magnitude_title"
+                android:textColor="@color/default_text_color"
+                app:asteroidName="@{asteroidModel.codename}" />
+
+            <TextView
+                android:id="@+id/closeApproachDate_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/default_text_color"
+                app:closeApproachDate="@{asteroidModel.closeApproachDate}"
+                tools:text="25.126 au" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/asteroid_image"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:srcCompat="@drawable/ic_help_circle"
+            app:statusIcon="@{asteroidModel.potentiallyHazardous}" />
+
+    </LinearLayout>
+
+</layout>
