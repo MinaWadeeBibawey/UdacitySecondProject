@@ -17,5 +17,4 @@ interface AsteroidListDao {
 
     @Query("SELECT * FROM asteroid_list WHERE date = strftime('%Y-%m-%d', 'now')")
     fun getTodayAsteroid(): LiveData<List<AsteroidEntity>>
-
 }
