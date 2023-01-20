@@ -1,2 +1,0 @@
-# UdacitySecondProject
-Asteroid Radar
