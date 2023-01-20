@@ -16,10 +16,6 @@ enum class AsteroidApiFilter(val value:String){ SHOW_TODAY("today"),SHOW_SEVEN_D
 
 class Network @Inject constructor(){
 
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
-
     val gson = GsonBuilder()
         .setLenient()
         .create()

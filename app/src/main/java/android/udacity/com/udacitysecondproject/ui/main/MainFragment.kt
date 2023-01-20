@@ -39,7 +39,7 @@ class MainFragment : Fragment() {
                     if (it.value.media_type == "image") {
                         Picasso.with(requireContext()).load(it.value.url)
                             .into(binding.activityMainImageOfTheDay)
-                        binding.activityMainImageOfTheDay.contentDescription = it.value.title
+                        binding.activityMainImageOfTheDay.contentDescription = requireContext().getString(R.string.nasa_picture_of_day_content_description_format,it.value.title)
                     }
                 }
             }

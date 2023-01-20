@@ -38,18 +38,20 @@ class AsteroidListRepository @Inject constructor(
         dataBase.asteroidListDao.insertOrders(asteroidList)
     }
 
-    fun getAsteroidListFromDB(filter:AsteroidApiFilter): LiveData<List<Asteroid>> =
-        Transformations.map(when(filter.value){
-            "today"->{
-                dataBase.asteroidListDao.getTodayAsteroid()
+    fun getAsteroidListFromDB(filter: AsteroidApiFilter): LiveData<List<Asteroid>> =
+        Transformations.map(
+            when (filter.value) {
+                "today" -> {
+                    dataBase.asteroidListDao.getTodayAsteroid()
+                }
+                "seven_days" -> {
+                    dataBase.asteroidListDao.getSevenDaysAsteroids()
+                }
+                else -> {
+                    dataBase.asteroidListDao.getAsteroidList()
+                }
             }
-            "seven_days" ->{
-                dataBase.asteroidListDao.getSevenDaysAsteroids()
-            }
-            else ->{
-                dataBase.asteroidListDao.getAsteroidList()
-            }
-        }) {
+        ) {
             it.asDomainModel()
         }
 }

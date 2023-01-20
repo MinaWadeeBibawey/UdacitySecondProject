@@ -7,10 +7,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "asteroid_list")
 data class AsteroidEntity constructor(
-    /*@PrimaryKey
-    val workerName: String = "",
-    val asteroidList: ArrayList<Asteroid>*/
-
     @PrimaryKey
     val id: Long,
     @ColumnInfo(name = "codename")

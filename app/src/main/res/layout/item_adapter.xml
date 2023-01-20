@@ -11,45 +11,46 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/asteroidName_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="@string/absolute_magnitude_title"
-                android:textColor="@color/default_text_color"
-                app:asteroidName="@{asteroidModel.codename}" />
-
-            <TextView
-                android:id="@+id/closeApproachDate_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/default_text_color"
-                app:closeApproachDate="@{asteroidModel.closeApproachDate}"
-                tools:text="25.126 au" />
-        </LinearLayout>
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp">
 
         <ImageView
             android:id="@+id/asteroid_image"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:layout_alignParentEnd="true"
             app:srcCompat="@drawable/ic_help_circle"
-            app:statusIcon="@{asteroidModel.potentiallyHazardous}" />
+            android:layout_centerVertical="true"
+            app:statusIcon="@{asteroidModel.potentiallyHazardous}"
+            tools:ignore="ContentDescription"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/asteroidName_text"
+            style="@style/text_title_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/absolute_magnitude_title"
+            android:textColor="@color/default_text_color"
+            app:asteroidName="@{asteroidModel.codename}"
+            android:gravity="start"
+           android:layout_toStartOf="@+id/asteroid_image"/>
+
+        <TextView
+            android:id="@+id/closeApproachDate_text"
+            style="@style/text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/default_text_color"
+            app:closeApproachDate="@{asteroidModel.closeApproachDate}"
+            android:layout_toStartOf="@+id/asteroid_image"
+            android:layout_below="@+id/asteroidName_text"
+            tools:text="25.126 au"
+            android:gravity="start"/>
+
+    </RelativeLayout>
 
 </layout>

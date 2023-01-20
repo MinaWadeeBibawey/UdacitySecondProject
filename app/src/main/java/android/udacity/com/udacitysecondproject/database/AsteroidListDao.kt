@@ -12,9 +12,6 @@ interface AsteroidListDao {
     @Query("SELECT * FROM asteroid_list ORDER BY date ASC")
     fun getAsteroidList(): LiveData<List<AsteroidEntity>>
 
-    @Query("DELETE FROM asteroid_list")
-    fun clear()
-
     @Query("SELECT * FROM asteroid_list WHERE date BETWEEN strftime('%Y-%m-%d', 'now') AND strftime('%Y-%m-%d','now','6 days')")
     fun getSevenDaysAsteroids(): LiveData<List<AsteroidEntity>>
 
